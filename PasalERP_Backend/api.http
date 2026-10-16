@@ -1,0 +1,75 @@
+@baseUrl = http://localhost:4000/api
+
+### Health
+GET {{baseUrl}}/health
+
+### Master data
+GET {{baseUrl}}/settings
+GET {{baseUrl}}/warehouses
+GET {{baseUrl}}/partners
+GET {{baseUrl}}/items
+GET {{baseUrl}}/accounts
+GET {{baseUrl}}/batches?itemId=item-1&warehouseId=wh-1
+GET {{baseUrl}}/dashboard
+
+### Sales
+GET {{baseUrl}}/sales
+POST {{baseUrl}}/sales
+Content-Type: application/json
+
+{
+  "transactionType": "tax_invoice",
+  "fiscalYear": "2081/82",
+  "mitiDate": "2081-11-20",
+  "adDate": "2025-03-05",
+  "customerId": "bp-4",
+  "warehouseId": "wh-1",
+  "paymentMode": "Credit",
+  "syncWithIrd": true,
+  "lines": [
+    { "itemId": "item-1", "quantity": 2, "unitPrice": 1650, "discountPercent": 0 }
+  ],
+  "notes": "API test"
+}
+
+### Purchases
+GET {{baseUrl}}/purchases
+POST {{baseUrl}}/purchases
+Content-Type: application/json
+
+{
+  "transactionType": "purchase_invoice",
+  "supplierBillNo": "SUP-TEST-001",
+  "fiscalYear": "2081/82",
+  "mitiDate": "2081-11-20",
+  "adDate": "2025-03-05",
+  "vendorId": "bp-1",
+  "warehouseId": "wh-1",
+  "paymentMode": "Credit",
+  "lines": [
+    { "itemId": "item-1", "quantity": 5, "unitCost": 950 }
+  ],
+  "notes": "API test"
+}
+
+### Stock transfer
+POST {{baseUrl}}/stock-transfers
+Content-Type: application/json
+
+{
+  "fiscalYear": "2081/82",
+  "mitiDate": "2081-11-20",
+  "adDate": "2025-03-05",
+  "sourceWarehouseId": "wh-1",
+  "targetWarehouseId": "wh-2",
+  "items": [
+    { "itemId": "item-1", "quantity": 2 }
+  ],
+  "remarks": "API transfer test"
+}
+
+### Accounting / IRD
+GET {{baseUrl}}/journals
+GET {{baseUrl}}/ird/sales-book?fiscalYear=2081/82
+GET {{baseUrl}}/ird/purchase-book?fiscalYear=2081/82
+GET {{baseUrl}}/ird/vat-summary?fiscalYear=2081/82

@@ -1,0 +1,50 @@
+USE NepalIRDERP;
+GO
+
+/* =========================================================
+   B11 - Chart of Accounts hardening
+   ========================================================= */
+
+IF COL_LENGTH('dbo.Accounts', 'isActive') IS NULL
+BEGIN
+    ALTER TABLE dbo.Accounts
+    ADD isActive bit NOT NULL
+        CONSTRAINT DF_Accounts_IsActive DEFAULT 1;
+END
+GO
+
+IF COL_LENGTH('dbo.Accounts', 'isSystem') IS NULL
+BEGIN
+    ALTER TABLE dbo.Accounts
+    ADD isSystem bit NOT NULL
+        CONSTRAINT DF_Accounts_IsSystem DEFAULT 0;
+END
+GO
+
+
+/* =========================================================
+   Account Determination
+   ========================================================= */
+
+IF OBJECT_ID('dbo.AccountMappings','U') IS NULL
+BEGIN
+    CREATE TABLE dbo.AccountMappings
+    (
+        mappingKey nvarchar(50) NOT NULL,
+        accountCode nvarchar(20) NOT NULL,
+        label nvarchar(200) NOT NULL,
+        description nvarchar(500) NOT NULL,
+        isRequired bit NOT NULL
+            CONSTRAINT DF_AccountMappings_IsRequired DEFAULT 1,
+        updatedAt datetime2(0) NOT NULL
+            CONSTRAINT DF_AccountMappings_UpdatedAt DEFAULT SYSUTCDATETIME(),
+
+        CONSTRAINT PK_AccountMappings
+            PRIMARY KEY(mappingKey),
+
+        CONSTRAINT FK_AccountMappings_Account
+            FOREIGN KEY(accountCode)
+            REFERENCES dbo.Accounts(code)
+    );
+END
+GO

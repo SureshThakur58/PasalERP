@@ -1,0 +1,35 @@
+{
+  "name": "nepal-ird-erp-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "tsc --noEmit",
+    "db:init": "tsx scripts/init-db.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:migrate:b1": "tsx scripts/migrate-b1.ts",
+    "db:migrate:b4": "tsx scripts/migrate-b4.ts",
+    "db:migrate:b9": "tsx scripts/migrate-b9.ts",
+    "test:e2e": "tsx scripts/e2e-smoke.ts",
+    "test:all": "npm run lint && npm run test:e2e"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "mssql": "^11.0.1",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.3",
+    "@types/mssql": "^12.3.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

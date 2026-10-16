@@ -1,0 +1,6 @@
+{
+  "name": "Nepal IRD Inventory & Financial ERP",
+  "description": "Nepal IRD-compliant inventory management and automated financial accounting system for SMEs and readymade garment businesses with multi-warehouse tracking and FIFO valuation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { getPool } from '../src/config/db.js';
+const file=path.resolve(process.cwd(),'sql/004_b9_hardening.sql');
+const script=fs.readFileSync(file,'utf8').replace(/^GO\s*$/gim,'');
+const pool=await getPool();
+await pool.request().batch(script);
+const row=(await pool.request().query('SELECT TOP 1 version,appliedAt,description FROM dbo.ErpSchemaVersion ORDER BY version DESC')).recordset[0];
+console.log(`B9 migration applied: v${row.version} - ${row.description} (${row.appliedAt})`);
+await pool.close();

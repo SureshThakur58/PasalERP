@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "Nepal IRD ERP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dashboard",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/dashboard",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "dashboard"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Items",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/items",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sales",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/sales",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sales"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Purchases",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/purchases",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "purchases"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Journals",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/journals",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "journals"
+          ]
+        }
+      }
+    }
+  ]
+}
